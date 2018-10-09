@@ -17,7 +17,7 @@ client.remove_command('help')
 
 @client.event
 async def on_ready():
-    await client.change_presence(game= discord.Game(name = 'with my heart'))
+    #await client.change_presence(game= discord.Game(name = 'with my heart'))
     print("Bot is Ready")
 
 
@@ -27,7 +27,7 @@ async def clubes():
     message = ''
     roles = []
     for role in server.roles:
-        if role.name != 'Admin' and role.name != '@everyone' and role.name != 'Bot':
+        if role.name != 'Centro Acadêmico' and role.name != '@everyone' and role.name != 'Bot':
             roles.append(role.name)
     for name in roles:
         message += name
