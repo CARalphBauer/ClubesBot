@@ -48,7 +48,7 @@ async def inscrever(ctx, roleName):
             role = discord.utils.get(server.roles, name = roleN)
             await client.add_roles(ctx.message.author, role)
             embed = discord.Embed()
-            embed.description = 'You are now a ' + roleN
+            embed.description = 'Você agora está no clube de ' + roleN
             await client.say(embed = embed)
 
 @client.command(pass_context = True)
