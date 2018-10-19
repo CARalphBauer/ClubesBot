@@ -52,6 +52,17 @@ async def inscrever(ctx, *roleName):
             embed.description = 'Você agora está no clube de ' + roleN
             await client.say(embed = embed)
 
+
+@client.command(pass_context = True)
+async def sair(ctx, *roleName):
+    finalRole = ' '.join(roleName)
+    for roleN in ctx.message.author.roles:
+        if finalRole == roleN.name:
+            embed = discord.Embed()
+            embed.description = "Você saiu do clube " + roleN.name
+            await client.send_message(ctx.message.author,embed = embed)
+            await client.remove_roles(ctx.message.author, roleN)
+
 @client.command(pass_context = True)
 async def ajuda(ctx):
     author = ctx.message.author
@@ -62,13 +73,14 @@ async def ajuda(ctx):
 
     embed.add_field(name='!clubes', value='Mostra lista de clubes disponíveis', inline=False)
     embed.add_field(name='!inscrever <<Nome do Clube>>', value='Se inscreve no clube, podendo acessar o canal do discord do clube. Este comando não pode ser executado em mensagem privada', inline=False)
+    embed.add_field(name='!sair <<Nome do Clube>>', value='Sai do clube, perdendo acesso aos canais de comunicação dele.', inline=False)
 
     await client.send_message(author,embed = embed)
 
 @client.command(pass_context = True)
 async def clear(ctx, amount = 100):
     for role in ctx.message.author.roles:
-        if role.name == 'Admin':
+        if role.name == 'Centro Acadêmico':
             messages = []
             channel = ctx.message.channel
             async for message in client.logs_from(channel, limit = int(amount)):
