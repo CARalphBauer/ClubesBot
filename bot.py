@@ -45,7 +45,7 @@ async def inscrever(ctx, *roleName):
         if role.name != 'Centro Acadêmico' and role.name != '@everyone' and role.name != 'Bot':
             roles.append(role.name)
     for roleN in roles:
-        if finalRole == roleN:
+        if finalRole.upper() == roleN.upper():
             role = discord.utils.get(server.roles, name = roleN)
             await client.add_roles(ctx.message.author, role)
             embed = discord.Embed()
@@ -57,7 +57,7 @@ async def inscrever(ctx, *roleName):
 async def sair(ctx, *roleName):
     finalRole = ' '.join(roleName)
     for roleN in ctx.message.author.roles:
-        if finalRole == roleN.name:
+        if finalRole.upper() == roleN.name.upper():
             embed = discord.Embed()
             embed.description = "Você saiu do clube " + roleN.name
             await client.send_message(ctx.message.author,embed = embed)
